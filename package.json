@@ -1,0 +1,31 @@
+{
+  "name": "question-box",
+  "version": "1.0.0",
+  "description": "Express app for finding and sharing questions",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opheron/question-box.git"
+  },
+  "author": "opheron",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/opheron/question-box/issues"
+  },
+  "homepage": "https://github.com/opheron/question-box#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "method-override": "^2.3.7",
+    "mongodb": "^2.2.20",
+    "mongoose": "^4.7.6",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0"
+  }
+}
