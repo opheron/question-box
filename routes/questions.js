@@ -9,7 +9,7 @@ router.get("/", function(req, res){
 		if (err) {				// err handling should be fixed here
 			console.log(err);
 		} else {
-			res.render("questions/index", {questions:allQuestions});
+			res.render("questions/index", {questions: allQuestions});
 		}
 	});
 });
