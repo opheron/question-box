@@ -2,8 +2,7 @@ var mongoose = require("mongoose");
 
 var questionSchema = new mongoose.Schema(
 	{
-		body: String,
-		author: String
+		body: String
 	},
 	{timestamps: true}
 );
