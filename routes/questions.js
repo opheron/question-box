@@ -1,4 +1,5 @@
 var express			 = require("express");
+var mongoose		 = require("mongoose");
 var Question		 = require("../models/question");
 var router			 = express.Router();
 
@@ -9,6 +10,10 @@ router.get("/", function(req, res){
 		if (err) {				// err handling should be fixed here
 			console.log(err);
 		} else {
+			// for timestamp handling
+			allQuestions.forEach(function(question){
+				question.createdAtFormatted = question.createdAt.toDateString();
+			});
 			res.render("questions/index", {questions: allQuestions});
 		}
 	});
@@ -30,20 +35,24 @@ router.post("/", function(req, res){
 			console.log(err);
 		} else {
 			// console.log(createdQuestion);
-			res.send("Created successfully!");
 			// eventually redirect to show or index
+			res.redirect("/");
 		}
 	});
 });
 
-// SHOW - show more info about one question
+// SHOW - shows more info about one question
 router.get("/:id", function(req, res){
-	//find the question with the given ID
-	Question.findById(req.params.id).exec(function(err, foundQuestion){
+	// find question with provided ID
+	Question.findById(req.params.id, function(err, foundQuestion){
 		if (err) {
-			console.log(err);
+			// console.log("Req params id type is: " + typeof req.params.id);
+			// console.log("Req params id value is: " + req.params.id);
+			// console.log("*******************");
+			// console.log("Question value is: " + foundQuestion);
+			console.log(err.message);
 		} else {
-			// render show template with that question
+			//render show template with question info
 			res.render("questions/show", {question: foundQuestion});
 		}
 	});

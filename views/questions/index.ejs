@@ -3,7 +3,9 @@
 <h1>All Questions</h1>
   <ul>
     <% questions.forEach(function(question){ %>
-      <li><a href="questions/<%=question.id%>"><%= question.body %></a></li>
+      <li><a href="questions/<%=question.id%>"><%= question.body %></a>
+      		<%= // question.createdAtFormatted %>
+      </li>
     <% });%>
   </ul>
 

@@ -1,7 +1,9 @@
 <% include ../partials/header %>
 
 	<h1>Show a question</h1>
-	<%= question.body %>
+	 <p><%= question.body %></p>
+	 <p>Created on: <%= question.createdAt %></p>
+	 <p>Last modified on: <%= question.updatedAt %>
 
 <% include ../partials/footer %>
 
