@@ -1,0 +1,8 @@
+<% include ../partials/header %>
+        <h3>Edit Question #<%= question._id %></h3>
+        	<form action="/questions/<%= question._id %>?_method=PUT" method="POST">
+        		<input type="text" size="100" name="question[body]" value="<%= question.body %>">
+        		<button>Submit!</button>
+        	</form>
+<% include ../partials/footer %>
+

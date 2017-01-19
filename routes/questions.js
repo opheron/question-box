@@ -58,5 +58,24 @@ router.get("/:id", function(req, res){
 	});
 });
 
+// EDIT - display edit question form
+router.get("/:id/edit", function(req, res){
+	Question.findById(req.params.id, function(err, foundQuestion){
+		res.render("questions/edit", {question: foundQuestion})
+	});
+});
+
+// UPDATE - change question in DB
+router.put("/:id", function(req, res){
+	// find and update question
+	Question.findByIdAndUpdate(req.params.id, req.body.question, function(err, updatedQuestion){
+		if (err) {
+			res.redirect("/questions");
+		} else {
+			// redirect to show page
+			res.redirect("/questions/" + req.params.id);
+		}
+	});
+});
 
 module.exports = router;

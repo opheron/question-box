@@ -4,6 +4,7 @@
 	 <p><%= question.body %></p>
 	 <p>Created on: <%= question.createdAt %></p>
 	 <p>Last modified on: <%= question.updatedAt %>
+	 <a href="/questions/<%= question._id %>/edit">Edit</a>
 
 <% include ../partials/footer %>
 
