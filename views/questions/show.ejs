@@ -3,8 +3,11 @@
 	<h1>Show a question</h1>
 	 <p><%= question.body %></p>
 	 <p>Created on: <%= question.createdAt %></p>
-	 <p>Last modified on: <%= question.updatedAt %>
+	 <p>Last modified on: <%= question.updatedAt %></p>
 	 <a href="/questions/<%= question._id %>/edit">Edit</a>
+	 <form action="/questions/<%= question._id %>?_method=DELETE" method="POST">
+	 	<input type="submit" value="Delete">
+	 </form>
 
 <% include ../partials/footer %>
 

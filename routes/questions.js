@@ -36,7 +36,7 @@ router.post("/", function(req, res){
 		} else {
 			// console.log(createdQuestion);
 			// eventually redirect to show or index
-			res.redirect("/");
+			res.redirect("/questions");
 		}
 	});
 });
@@ -61,7 +61,7 @@ router.get("/:id", function(req, res){
 // EDIT - display edit question form
 router.get("/:id/edit", function(req, res){
 	Question.findById(req.params.id, function(err, foundQuestion){
-		res.render("questions/edit", {question: foundQuestion})
+		res.render("questions/edit", {question: foundQuestion});
 	});
 });
 
@@ -74,6 +74,17 @@ router.put("/:id", function(req, res){
 		} else {
 			// redirect to show page
 			res.redirect("/questions/" + req.params.id);
+		}
+	});
+});
+
+// DESTROY - delete question from DB
+router.delete("/:id", function(req, res){
+	Question.findByIdAndRemove(req.params.id, function(err){
+		if (err){
+			res.redirect("/questions");
+		} else {
+			res.redirect("/questions");
 		}
 	});
 });
