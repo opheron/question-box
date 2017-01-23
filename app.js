@@ -2,7 +2,11 @@ var express				 = require("express");
 var app					 = express();
 var bodyParser			 = require("body-parser");
 var mongoose			 = require("mongoose");
+var passport			 = require("passport");
+var passportLocalStrategy		 = require("passport-local");
 var methodOverride		 = require("method-override");
+var User				 = require("./models/user");
+var Question 			 = require("./models/question");
 
 // require routes
 var indexRoutes			 = require("./routes/index");
@@ -15,6 +19,18 @@ mongoose.connect("mongodb://localhost/question-box");
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
+
+// passport configuration
+app.use(require("express-session")({
+	secret: "this is a secret",
+	resave: false,
+	saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new passportLocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use("/", indexRoutes);
 app.use("/questions", questionRoutes);
