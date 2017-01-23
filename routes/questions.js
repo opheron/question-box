@@ -2,6 +2,7 @@ var express			 = require("express");
 var mongoose		 = require("mongoose");
 var Question		 = require("../models/question");
 var router			 = express.Router();
+var middleware		 = require("../middleware");
 
 // INDEX - show all questions
 router.get("/", function(req, res){
@@ -20,12 +21,12 @@ router.get("/", function(req, res){
 });
 
 // NEW - show form to create new question
-router.get("/new", function(req, res){
+router.get("/new", middleware.isLoggedIn, function(req, res){
 	res.render("questions/new");
 });
 
 // CREATE - add new question to DB
-router.post("/", function(req, res){
+router.post("/", middleware.isLoggedIn, function(req, res){
 	// get data from form and add to question array
 	// This needs user input sanitization to be implemented
 	var question_body = req.body.question_body;

@@ -5,6 +5,7 @@ var mongoose			 = require("mongoose");
 var passport			 = require("passport");
 var passportLocalStrategy		 = require("passport-local");
 var methodOverride		 = require("method-override");
+var flash				 = require("connect-flash");
 var User				 = require("./models/user");
 var Question 			 = require("./models/question");
 
@@ -19,6 +20,7 @@ mongoose.connect("mongodb://localhost/question-box");
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
+app.use(flash());
 
 // passport configuration
 app.use(require("express-session")({
@@ -34,6 +36,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req, res, next){
 	res.locals.currentUser = req.user;
+	res.locals.error = req.flash("error");
+	res.locals.success = req.flash("success");
 	next();
 });
 

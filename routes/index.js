@@ -21,6 +21,7 @@ router.post("/register", function(req, res){
 			console.log(err);
 		}
 		passport.authenticate("local")(req, res, function(){
+			req.flash("success", "Welcome to QuestionBox, " + user.username + "!");
 			res.redirect("/questions");
 		});
 	});
