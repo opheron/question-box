@@ -32,6 +32,11 @@ passport.use(new passportLocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	next();
+});
+
 app.use("/", indexRoutes);
 app.use("/questions", questionRoutes);
 
