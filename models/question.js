@@ -2,7 +2,14 @@ var mongoose = require("mongoose");
 
 var questionSchema = new mongoose.Schema(
 	{
-		body: String
+		body: String,
+		author: {
+			id: {
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "User"
+			},
+			username: String
+		}
 	},
 	{timestamps: true}
 );

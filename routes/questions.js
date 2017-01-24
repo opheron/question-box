@@ -30,7 +30,11 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 	// get data from form and add to question array
 	// This needs user input sanitization to be implemented
 	var question_body = req.body.question_body;
-	var newQuestion = {body: question_body};
+	var author = {
+		id: req.user._id,
+		username: req.user.username
+	}	
+	var newQuestion = {body: question_body, author: author};
 	Question.create(newQuestion, function(err, createdQuestion){
 		if (err) {
 			console.log(err);
